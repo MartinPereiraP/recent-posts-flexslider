@@ -1,3 +1,13 @@
+<?php
+// Frontend View of Slider
+
+// Enqueue Stylesheet and Script only where loaded
+
+wp_enqueue_style( 'recent-posts-flexslider-widget-styles' );
+wp_enqueue_script( 'recent-posts-flexslider-script' );
+
+?>
+
 <h3 class="flexslider-title"><?php if ( !empty( $title ) ) { echo $title; }; ?></h3>
 
 <?php

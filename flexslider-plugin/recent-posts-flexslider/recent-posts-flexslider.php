@@ -3,7 +3,7 @@
 Plugin Name: Recent Posts FlexSlider
 Plugin URI: http://davidlaietta.com/plugins/
 Description: Using the responsive FlexSlider created by WooThemes and integrated into WordPress, this slider pulls recent posts from categories of your choosing.
-Version: 1.0
+Version: 1.1
 Author: David Laietta
 Author URI: http://davidlaietta.com/
 Author Email: plugins@davidlaietta.com
@@ -49,7 +49,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 		
 		parent::__construct(
-			'recent-posts-flexslider-id',
+			'recent-posts-flexslider',
 			__( 'Recent Posts FlexSlider', 'recent-posts-flexslider-locale' ),
 			array(
 				'classname'		=>	'recent-posts-flexslider-class',
@@ -58,8 +58,10 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		);
 	
 		// Register site styles and scripts
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_recent_posts_flexslider_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_recent_posts_flexslider_scripts' ) );
+		if ( is_active_widget( false, false, 'recent-posts-flexslider', true ) ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'register_recent_posts_flexslider_styles' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'register_recent_posts_flexslider_scripts' ) );
+		}
 		
 	} // end constructor
 
@@ -175,7 +177,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 	 */
 	public function register_recent_posts_flexslider_styles() {
 	
-		wp_enqueue_style( 'recent-posts-flexslider-widget-styles', plugins_url( 'recent-posts-flexslider/css/slider.css' ) );
+		wp_register_style( 'recent-posts-flexslider-widget-styles', plugins_url( 'recent-posts-flexslider/css/slider.css' ) );
 		
 	} // end register_widget_styles
 	
@@ -184,7 +186,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 	 */
 	public function register_recent_posts_flexslider_scripts() {
 	
-		wp_enqueue_script( 'recent-posts-flexslider-script', plugins_url( 'recent-posts-flexslider/js/jquery.flexslider-min.js' ), array( 'jquery' ) );
+		wp_register_script( 'recent-posts-flexslider-script', plugins_url( 'recent-posts-flexslider/js/jquery.flexslider-min.js' ), array( 'jquery' ), '2.0', true );
 		
 	} // end register_widget_scripts
 	
