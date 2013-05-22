@@ -44,6 +44,9 @@ Currently the plugin allows the selection of a category of posts or a custom pos
 
 == Changelog ==
 
+= 1.2 =
+* Reupload of core files
+
 = 1.1 =
 * CSS Optimization
 * Dynamically load scripts and stylesheet only on views that include widget
