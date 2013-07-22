@@ -11,12 +11,15 @@ wp_enqueue_script( 'recent-posts-flexslider-script' );
 <h3 class="flexslider-title"><?php if ( !empty( $title ) ) { echo $title; }; ?></h3>
 
 <?php
-query_posts(array(
+$flex_args = array(
     'cat' => $categories,
     'post_status' => 'publish',
     'post_type' => $post_type_array,
-    'showposts' => $slider_count
-));
+    'showposts' => $slider_count,
+    'ignore_sticky_posts' => true,
+);
+
+$flex_query = new WP_Query( $flex_args );
 
 // Get Image for Slider
 function get_recent_post_flexslider_image($image_size) {
@@ -57,10 +60,10 @@ function recent_post_flexslider_excerpt($string, $word_limit, $more = '&nbsp;&he
 ?>
 
 <div id="slider-wrap">
-    <div class="flexslider">
+    <div class="flexslider" <?php /* Remove margin if only one slide */ if($slider_count == 1) { echo 'style="margin: 0;"'; } ?>>
         <ul class="slides">
             <?php
-			if ( have_posts() ) : while(have_posts()): the_post();
+			if ( $flex_query->have_posts() ) : while( $flex_query->have_posts() ): $flex_query->the_post();
                     $output = '<li style="text-align:center; max-height: ' . $slider_height . 'px;">';
                         $output .= '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
                             $output .= '<div style="height: ' . $slider_height . 'px">';

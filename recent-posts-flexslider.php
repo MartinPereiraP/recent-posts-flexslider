@@ -3,7 +3,7 @@
 Plugin Name: Recent Posts FlexSlider
 Plugin URI: http://davidlaietta.com/plugins/
 Description: Using the responsive FlexSlider created by WooThemes and integrated into WordPress, this slider pulls recent posts from categories of your choosing.
-Version: 1.1
+Version: 1.3
 Author: David Laietta
 Author URI: http://davidlaietta.com/
 Author Email: plugins@davidlaietta.com
@@ -185,8 +185,10 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 	 * Registers and enqueues widget-specific scripts.
 	 */
 	public function register_recent_posts_flexslider_scripts() {
+
+		wp_enqueue_script( 'jquery' );
 	
-		wp_register_script( 'recent-posts-flexslider-script', plugins_url( 'recent-posts-flexslider/js/jquery.flexslider-min.js' ), array( 'jquery' ), '2.0', true );
+		wp_register_script( 'recent-posts-flexslider-script', plugins_url( 'recent-posts-flexslider/js/jquery.flexslider-min.js' ), array( 'jquery' ), '2.0', false );
 		
 	} // end register_widget_scripts
 	
