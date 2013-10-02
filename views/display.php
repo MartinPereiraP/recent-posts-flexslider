@@ -96,9 +96,9 @@ function recent_post_flexslider_excerpt($string, $word_limit, $more = '&nbsp;&he
 	"use strict";
 	$(function () {
       jQuery('.flexslider').flexslider({
-        animation: "slide",
-        slideshowSpeed: <?php echo $slider_pause; ?>,		//Integer: Set the speed of the slideshow cycling, in milliseconds
-        animationSpeed: <?php echo $slider_duration; ?>,	//Integer: Set the speed of animations, in milliseconds
+        animation: "<?php echo $slider_animate; ?>",		// String: Set the slideshow animation (either slide or fade)
+        slideshowSpeed: <?php echo $slider_pause; ?>,		// Integer: Set the speed of the slideshow cycling, in milliseconds
+        animationSpeed: <?php echo $slider_duration; ?>,	// Integer: Set the speed of animations, in milliseconds
       });
 	});
 }(jQuery));

@@ -3,7 +3,7 @@
 Plugin Name: Recent Posts FlexSlider
 Plugin URI: http://davidlaietta.com/plugins/
 Description: Using the responsive FlexSlider created by WooThemes and integrated into WordPress, this slider pulls recent posts from categories of your choosing.
-Version: 1.3
+Version: 1.4
 Author: David Laietta
 Author URI: http://davidlaietta.com/
 Author Email: plugins@davidlaietta.com
@@ -86,6 +86,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		$slider_pause    = $instance['slider_pause'];
 		$slider_count    = $instance['slider_count'];
 		$slider_height   = $instance['slider_height'];
+		$slider_animate  = $instance['slider_animate'];
 		$excerpt_length  = $instance['excerpt_length'];
 		
 		$post_title = isset($instance['post_title']) ? 'true' : 'false';
@@ -125,6 +126,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		$instance['slider_pause']    = $new_instance['slider_pause'];
 		$instance['slider_count']    = $new_instance['slider_count'];
 		$instance['slider_height']   = $new_instance['slider_height'];
+		$instance['slider_animate']	 = $new_instance['slider_animate'];
 		$instance['post_title']      = $new_instance['post_title'];
 		$instance['post_excerpt']    = $new_instance['post_excerpt'];
 		$instance['excerpt_length']  = $new_instance['excerpt_length'];
@@ -148,8 +150,9 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 			'slider_pause' => '3000',
 			'slider_count' => 3,
 			'slider_height' => 300,
-			'post_title' => on,
-			'post_excerpt' => on,
+			'slider_animate' => 'slide',
+			'post_title' => 'on',
+			'post_excerpt' => 'on',
 			'excerpt_length' => 20
 		);
 		$instance = wp_parse_args((array) $instance, $defaults);

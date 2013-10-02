@@ -3,8 +3,8 @@ Contributors: davidjlaietta
 Donate link: http://davidlaietta.com/
 Tags: slider, responsive
 Requires at least: 3.1
-Tested up to: 3.5.1
-Stable tag: 1.3
+Tested up to: 3.6.1
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -22,6 +22,7 @@ This slider uses the FlexSlider framework by [WooThemes](http://www.woothemes.co
 * Slide Pause
 * Number of Slides
 * Slider Height
+* Slider Animation Style
 * Post Title
 * Post Excerpt & Length
 
@@ -43,6 +44,10 @@ Currently the plugin allows the selection of a category of posts or a custom pos
 
 
 == Changelog ==
+
+= 1.4 - 2 October 2013 =
+* Added Slider Animation Style
+* Updated dropdowns to select() function
 
 = 1.3 =
 * Updated WP_Query

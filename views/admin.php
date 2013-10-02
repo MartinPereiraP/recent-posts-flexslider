@@ -17,7 +17,7 @@
     <select id="<?php echo $this->get_field_id('post_type'); ?>" name="<?php echo $this->get_field_name('post_type'); ?>" style="width:100%;">
     <?php
             foreach ($post_types as $post_type ) { ?>
-                <option value="<?php echo $post_type ?>" <?php if ($post_type == $instance['post_type']) echo 'selected="selected"'; ?>>
+                <option value="<?php echo $post_type ?>" <?php selected( $post_type, $instance['post_type'], true ); ?>>
                     <?php echo $post_type ?>
                 </option>
             <?php } ?>
@@ -42,6 +42,14 @@
 <p>
     <label for="<?php echo $this->get_field_id('slider_height'); ?>"><?php _e( 'Slider Height <em>(In pixels)</em>', 'recent-post-flexslider-locale' ) ?></label>
     <input style="width: 40px;" id="<?php echo $this->get_field_id('slider_height'); ?>" name="<?php echo $this->get_field_name('slider_height'); ?>" value="<?php echo $instance['slider_height']; ?>" type="text" />
+</p>
+
+<p>
+    <label for="<?php echo $this->get_field_id('slider_animate'); ?>"><?php _e( 'Slider Animation Style', 'recent-post-flexslider-locale' ) ?></label> 
+    <select id="<?php echo $this->get_field_id('slider_animate'); ?>" name="<?php echo $this->get_field_name('slider_animate'); ?>" style="width:100%;">
+        <option value="slide" <?php selected( 'slide', $instance['slider_animate'], true ); ?>>slide</option>
+        <option value="fade" <?php selected( 'fade', $instance['slider_animate'], true ); ?>>fade</option>
+    </select>
 </p>
 	
 <p>
