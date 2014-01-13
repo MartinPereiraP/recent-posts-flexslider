@@ -51,7 +51,7 @@
         <option value="fade" <?php selected( 'fade', $instance['slider_animate'], true ); ?>>fade</option>
     </select>
 </p>
-	
+    
 <p>
     <input class="checkbox" type="checkbox" <?php checked($instance['post_title'], 'on'); ?> id="<?php echo $this->get_field_id('post_title'); ?>" name="<?php echo $this->get_field_name('post_title'); ?>" /> 
     <label for="<?php echo $this->get_field_id('post_title'); ?>"><?php _e( 'Show Post Title', 'recent-post-flexslider-locale' ) ?></label>
@@ -61,4 +61,9 @@
     <input class="checkbox" type="checkbox" <?php checked($instance['post_excerpt'], 'on'); ?> id="<?php echo $this->get_field_id('post_excerpt'); ?>" name="<?php echo $this->get_field_name('post_excerpt'); ?>" /> 
     <label for="<?php echo $this->get_field_id('post_excerpt'); ?>"><?php _e( 'Post Excerpt &nbsp;&nbsp;&nbsp; Length<em>(words)</em>:', 'recent-post-flexslider-locale' ) ?></label>
     <input style="width: 40px;" id="<?php echo $this->get_field_id('excerpt_length'); ?>" name="<?php echo $this->get_field_name('excerpt_length'); ?>" value="<?php echo $instance['excerpt_length']; ?>" type="text" />
+</p>
+    
+<p>
+    <input class="checkbox" type="checkbox" <?php checked($instance['post_link'], 'on'); ?> id="<?php echo $this->get_field_id('post_link'); ?>" name="<?php echo $this->get_field_name('post_link'); ?>" /> 
+    <label for="<?php echo $this->get_field_id('post_link'); ?>"><?php _e( 'Link Slide to Post', 'recent-post-flexslider-locale' ) ?></label>
 </p>

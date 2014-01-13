@@ -3,7 +3,7 @@
 Plugin Name: Recent Posts FlexSlider
 Plugin URI: http://davidlaietta.com/plugins/
 Description: Using the responsive FlexSlider created by WooThemes and integrated into WordPress, this slider pulls recent posts from categories of your choosing.
-Version: 1.4
+Version: 1.5
 Author: David Laietta
 Author URI: http://davidlaietta.com/
 Author Email: plugins@davidlaietta.com
@@ -13,7 +13,7 @@ Network: false
 License: GPL
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Copyright 2013 (plugins@davidlaietta.com)
+Copyright 2014 (plugins@davidlaietta.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -91,6 +91,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		
 		$post_title = isset($instance['post_title']) ? 'true' : 'false';
 		$post_excerpt = isset($instance['post_excerpt']) ? 'true' : 'false';
+		$post_link = isset($instance['post_link']) ? 'true' : 'false';
 		
 		echo $before_widget;
 		
@@ -130,6 +131,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		$instance['post_title']      = $new_instance['post_title'];
 		$instance['post_excerpt']    = $new_instance['post_excerpt'];
 		$instance['excerpt_length']  = $new_instance['excerpt_length'];
+		$instance['post_link']		 = $new_instance['post_link'];
     
 		return $instance;
 		
@@ -153,7 +155,8 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 			'slider_animate' => 'slide',
 			'post_title' => 'on',
 			'post_excerpt' => 'on',
-			'excerpt_length' => 20
+			'excerpt_length' => 20,
+			'post_link' => 'on'
 		);
 		$instance = wp_parse_args((array) $instance, $defaults);
 			
@@ -194,6 +197,48 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		wp_register_script( 'recent-posts-flexslider-script', plugins_url( 'recent-posts-flexslider/js/jquery.flexslider-min.js' ), array( 'jquery' ), '2.0', false );
 		
 	} // end register_widget_scripts
+
+
+	// Get Image for Slider
+	public function get_recent_post_flexslider_image($image_size) {
+		$image = '';
+		$post_id = get_the_ID();
+		$the_title = get_the_title();
+		$files = get_children('post_parent='.$post_id.'&post_type=attachment&post_mime_type=image&order=desc');
+		
+		if(has_post_thumbnail()): // Return Featured Image
+		
+			$image = get_the_post_thumbnail($post_id, $image_size, array('class' => $image_size, 'title' => $the_title, 'alt' => $the_title));
+		
+		elseif($files && !has_post_thumbnail()): // If no Featured Image search for images inside the post
+			
+			$keys = array_reverse(array_keys($files));
+			$num = $keys[0];
+			$image_args = wp_get_attachment_image_src($num, $image_size);
+			$image = '<img src="'. $image_args[0] .'" width="'. $image_args[1] .'" height="'. $image_args[2] .'" alt="'. $the_title .'" title="'. $the_title .'" class="' . $image_size .' wp-post-image"/>';
+
+		endif;
+		
+		return $image;
+	}
+
+
+	// Set Limit of Words in Excerpt
+	public function recent_post_flexslider_excerpt($string, $word_limit, $more = '&nbsp;&hellip;') {
+		
+		// Remove tags from excerpt
+		$string = strip_tags( $string );
+		
+		$words = explode(' ', $string, ($word_limit + 1));
+		if(count($words) > $word_limit) {
+			array_pop($words);
+			$return = implode(' ', $words) . $more;
+		} else {
+			$return = implode(' ', $words);
+		}
+		
+		return $return;
+	}
 	
 } // end class
 

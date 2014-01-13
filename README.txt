@@ -3,8 +3,8 @@ Contributors: davidjlaietta
 Donate link: http://davidlaietta.com/
 Tags: slider, responsive
 Requires at least: 3.1
-Tested up to: 3.6.1
-Stable tag: 1.4
+Tested up to: 3.8
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -25,6 +25,7 @@ This slider uses the FlexSlider framework by [WooThemes](http://www.woothemes.co
 * Slider Animation Style
 * Post Title
 * Post Excerpt & Length
+* Toggle Post Link
 
 == Installation ==
 
@@ -44,6 +45,13 @@ Currently the plugin allows the selection of a category of posts or a custom pos
 
 
 == Changelog ==
+
+= 1.5 - 13 January 2014 =
+* Updated to Flexslider v2.2.2
+* Fixed image positioning
+* Added ability to toggle post links on/off
+* Added functionality to allow multiple sliders on one page
+* Changed from get_the_excerpt() to get_the_content and stripped tags to allow longer excerpt captions than set by theme
 
 = 1.4 - 2 October 2013 =
 * Added Slider Animation Style
