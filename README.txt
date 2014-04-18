@@ -3,7 +3,7 @@ Contributors: davidjlaietta
 Donate link: http://davidlaietta.com/
 Tags: slider, responsive
 Requires at least: 3.1
-Tested up to: 3.8
+Tested up to: 3.9
 Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl.html
