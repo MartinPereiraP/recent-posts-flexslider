@@ -36,7 +36,7 @@ $display = new Recent_Posts_FlexSlider();
                 	endif;
 
                         $output .= '<div style="height: ' . $slider_height . 'px">';
-                            $output .= $display->get_recent_post_flexslider_image("full");
+                            $output .= $display->get_recent_post_flexslider_image( $image_size );
                         $output .= '</div>';
 						
 						// Display Post Title and/or Excerpt (option set on Appearance->Widgets)

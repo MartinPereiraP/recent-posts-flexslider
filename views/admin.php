@@ -45,6 +45,35 @@
 </p>
 
 <p>
+    <label for="<?php echo $this->get_field_id('image_size'); ?>"><?php _e( 'Image Size', 'recent-post-flexslider-locale' ) ?></label>
+    <select id="<?php echo $this->get_field_id('image_size'); ?>" name="<?php echo $this->get_field_name('image_size'); ?>" class="widefat" style="width:100%;">
+        <option value="full" <?php selected( $instance['image_size'], 'full' ) ?>>Full Size</option>
+        <?php
+        global $_wp_additional_image_sizes;
+        
+        foreach( get_intermediate_image_sizes() as $s ){
+            $sizes[ $s ] = array( 0, 0 );
+            if( in_array( $s, array( 'thumbnail', 'medium', 'large' ) ) ){
+                $sizes[ $s ][0] = get_option( $s . '_size_w' );
+                $sizes[ $s ][1] = get_option( $s . '_size_h' );
+            } else {
+                if( isset( $_wp_additional_image_sizes ) && isset( $_wp_additional_image_sizes[ $s ] ) )
+                    $sizes[ $s ] = array( $_wp_additional_image_sizes[ $s ]['width'], $_wp_additional_image_sizes[ $s ]['height'], );
+            }
+        }
+
+        $option_image_size = '';
+        foreach( $sizes as $size => $atts ){
+            $option_image_size .= '<option value="' . $size . '"' . selected( $instance['image_size'], $size, false ) . '>';
+                $option_image_size .= ucwords( preg_replace( '/-/', ' ', $size ) ) . ' (' . implode( 'x', $atts ) . ')';
+            $option_image_size .= '</option>';
+        }
+        echo $option_image_size;
+        ?>
+    </select>
+</p>
+
+<p>
     <label for="<?php echo $this->get_field_id('slider_animate'); ?>"><?php _e( 'Slider Animation Style', 'recent-post-flexslider-locale' ) ?></label> 
     <select id="<?php echo $this->get_field_id('slider_animate'); ?>" name="<?php echo $this->get_field_name('slider_animate'); ?>" style="width:100%;">
         <option value="slide" <?php selected( 'slide', $instance['slider_animate'], true ); ?>>slide</option>

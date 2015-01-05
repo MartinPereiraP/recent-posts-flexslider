@@ -3,7 +3,7 @@
 Plugin Name: Recent Posts FlexSlider
 Plugin URI: http://davidlaietta.com/plugins/
 Description: Using the responsive FlexSlider created by WooThemes and integrated into WordPress, this slider pulls recent posts from categories of your choosing.
-Version: 1.5
+Version: 1.6
 Author: David Laietta
 Author URI: http://davidlaietta.com/
 Author Email: plugins@davidlaietta.com
@@ -13,7 +13,7 @@ Network: false
 License: GPL
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Copyright 2014 (plugins@davidlaietta.com)
+Copyright 2015 (plugins@davidlaietta.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -86,12 +86,13 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		$slider_pause    = $instance['slider_pause'];
 		$slider_count    = $instance['slider_count'];
 		$slider_height   = $instance['slider_height'];
+		$image_size 	 = $instance['image_size'];
 		$slider_animate  = $instance['slider_animate'];
 		$excerpt_length  = $instance['excerpt_length'];
 		
-		$post_title = isset($instance['post_title']) ? 'true' : 'false';
-		$post_excerpt = isset($instance['post_excerpt']) ? 'true' : 'false';
-		$post_link = isset($instance['post_link']) ? 'true' : 'false';
+		$post_title 	 = isset($instance['post_title']) ? 'true' : 'false';
+		$post_excerpt 	 = isset($instance['post_excerpt']) ? 'true' : 'false';
+		$post_link 		 = isset($instance['post_link']) ? 'true' : 'false';
 		
 		echo $before_widget;
 		
@@ -128,6 +129,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 		$instance['slider_count']    = $new_instance['slider_count'];
 		$instance['slider_height']   = $new_instance['slider_height'];
 		$instance['slider_animate']	 = $new_instance['slider_animate'];
+		$instance['image_size']	 	 = $new_instance['image_size'];
 		$instance['post_title']      = $new_instance['post_title'];
 		$instance['post_excerpt']    = $new_instance['post_excerpt'];
 		$instance['excerpt_length']  = $new_instance['excerpt_length'];
@@ -152,6 +154,7 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 			'slider_pause' => '3000',
 			'slider_count' => 3,
 			'slider_height' => 300,
+			'image_size' => 'full',
 			'slider_animate' => 'slide',
 			'post_title' => 'on',
 			'post_excerpt' => 'on',
@@ -173,11 +176,11 @@ class Recent_Posts_FlexSlider extends WP_Widget {
 	 * Loads the Widget's text domain for localization and translation.
 	 */
 	public function recent_posts_flexslider_textdomain() {
-	
-		load_plugin_textdomain( 'recent-posts-flexslider-locale', false, plugin_dir_path( __FILE__ ) . '/lang/' );
+
+		load_plugin_textdomain( 'recent-post-flexslider-locale', false, basename(dirname(__FILE__)) . '/lang/' );
 		
 	} // end widget_textdomain
-		
+
 	/**
 	 * Registers and enqueues widget-specific styles.
 	 */
